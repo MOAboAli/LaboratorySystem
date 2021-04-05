@@ -1,0 +1,288 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="StaffMasterPage.master.cs" Inherits="Laboratory.StaffMasterPage" %>
+
+<!DOCTYPE html >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="icon" href="images/favicon.ico" type="image/ico" />
+    <title>Lab</title>
+    
+   
+
+	
+   <!-- <link href="<%= Page.ResolveUrl("~/Style/gentelella-master/gentelella-master/build/css/custom.min.css")%>" rel="stylesheet"/>-->
+    
+    <link href="/Style/gentelella-master/gentelella-master/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Font Awesome -->
+    <link href="/Style/gentelella-master/gentelella-master/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- NProgress -->
+    <link href="/Style/gentelella-master/gentelella-master/vendors/nprogress/nprogress.css" rel="stylesheet"/>
+    <!-- iCheck -->
+    <link href="/Style/gentelella-master/gentelella-master/vendors/iCheck/skins/flat/green.css" rel="stylesheet"/>
+	<!-- bootstrap-progressbar -->
+    <link href="/Style/gentelella-master/gentelella-master/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"/>
+    <!-- JQVMap -->
+    <link href="/Style/gentelella-master/gentelella-master/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="/Style/gentelella-master/gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"/>
+    <link href="/Style/gentelella-master/gentelella-master/vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet"/>
+    <link href="/Style/gentelella-master/gentelella-master/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print"/>
+    <!-- bootstrap-wysiwyg -->
+    <link href="/Style/gentelella-master/gentelella-master/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet"/>
+    <!-- Select2 -->
+    <link href="/Style/gentelella-master/gentelella-master/vendors/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Switchery -->
+    <link href="/Style/gentelella-master/gentelella-master/vendors/switchery/dist/switchery.min.css" rel="stylesheet"/>
+    <!-- starrr -->
+    <link href="/Style/gentelella-master/gentelella-master/vendors/starrr/dist/starrr.css" rel="stylesheet"/>
+    <link href="/Style/gentelella-master/gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"/>
+    <!-- bootstrap-datetimepicker -->
+    <link href="/Style/gentelella-master/gentelella-master/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
+    <link href="/Style/gentelella-master/gentelella-master/vendors/google-code-prettify/prettify.min.css" rel="stylesheet"/>
+    
+  
+
+    <link href="/Style/gentelella-master/gentelella-master/vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet"/>
+    <link href="/Style/gentelella-master/gentelella-master/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print"/>
+    <!-- Custom Theme Style -->
+    <link href="/Style/ComingSoon/animate.css" rel="stylesheet" type="text/css"/>
+
+     <link href="/Style/ComingSoon/util.css" rel="stylesheet" type="text/css"/>
+    
+    <link href="/Style/ComingSoon/main.css" rel="stylesheet" type="text/css"/>
+
+	
+    <link href="/Style/gentelella-master/gentelella-master/build/css/custom.min.css" rel="stylesheet"/>
+
+
+
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+     <script src="/Style/gentelella-master/gentelella-master/vendors/moment/min/moment.min.js"></script>
+            
+       
+   
+    <script src="/Style/gentelella-master/gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
+      <script src="/Style/gentelella-master/gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+<body class="nav-md">
+    <form id="form1" runat="server">
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <div class="container body" >
+      <div class="main_container">
+       <div class="row">
+        <div class="col-sm-3 col-md-3 col-xs-3 left_col"  id="menubar">
+          
+          <div class="left_col scroll-view" >
+        <%--style="background:#2A3F54;"--%>
+
+            <div class="clearfix"></div>
+
+             
+            
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+             
+              <div class="menu_section">
+                <%--<h3>University of Canada</h3>--%>
+                  <%--<img src="https://www.uofcanada.edu.eg/wp-content/themes/uce/img/logo.png" />--%>
+                <ul class="nav side-menu">
+
+                    <%--OnItemDataBound="ItemBound"--%>
+
+                    <asp:Repeater ID="LeftMenuRepeater" runat="server" OnItemDataBound="ItemBound">
+                    <ItemTemplate>
+                       
+                        <asp:HiddenField ID="hfCustomerId" runat="server" Value='<%# Eval("SubModuleId") %>' /> 
+
+                         <li><a><i class="fa fa-home"></i> <%#Eval("SubModuleName") %> <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                             <asp:Repeater ID="InsideMenuRepeater" runat="server">
+                                <ItemTemplate>
+                                      
+                                      <li><a href="<%#Eval("PageURL") %>"><%#Eval("DisplayName") %></a></li>
+                      
+                                  
+                                </ItemTemplate>
+                          </asp:Repeater>
+                        </ul>
+                       </li>
+                        
+
+
+                    </ItemTemplate>
+                </asp:Repeater>
+
+                
+                </ul>
+              </div>
+           
+
+            </div>
+            <!-- /sidebar menu -->
+
+           
+          </div>
+        </div>
+     <%-- #F7F7F7; --%>
+        <div class="right_col" role="main" style="background:#fff;">  
+          
+            <div class="row">
+                  <div class="">
+                 <div class="">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+             </div>
+           </div>
+          <div class="row">
+           
+              <div class="col-md-5 col-sm-12 col-xs-12">
+                  <div class="col-md-12 col-lg-12 hidden-sm hidden-xs"><img src="/Style/Images/lab2.jpg"  /></div>
+                  <div class="col-sm-12 hidden-lg hidden-xs hidden-md"><img src="/Style/Images/lab2.jpg"  style="max-width:200px;"/></div>
+                  <div class="col-xs-12 hidden-lg hidden-sm hidden-md"><img src="/Style/Images/lab2.jpg"  style="max-width:100px;"/></div>
+                 
+              </div>
+             
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                  <div class="row">
+                       <asp:Label ID="LabelUserName" runat="server" Text=""></asp:Label>
+                  </div>
+                  <br />
+                  <div class="row">
+                      <div class="col-md-6 col-sm-12 col-xs-12">
+                      <input id="Button1" type="button" value="LogOut" class="btn btn-warning" onclick="window.location.href='/Login.aspx?ref=logout'"/>
+                      </div>
+                      <div class="col-md-6 col-sm-12 col-xs-12">
+                      <input id="Button2" type="button" value="DashBoard" class="btn btn-primary" onclick="window.location.href='/Pages/Main/DashBoard.aspx'"/>
+                      </div>
+                 </div>
+              </div>
+    </div>
+            <br />
+            <div class="row">
+          <div class="col-lg-3 col-md-5 col-sm-12">
+          <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <center><h3><asp:Label ID="Labeltextpage" runat="server" Text=""></asp:Label></h3></center>
+    
+          </div>
+        </nav>
+       </div> 
+
+            </div>
+            <br />
+    
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+          
+
+
+
+
+           
+        </div> 
+
+        </div>
+
+            </div>
+         </div>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder4" runat="server">
+            </asp:ContentPlaceHolder>
+    </form>
+
+    
+    
+
+   
+  
+      <script src="/Style/gentelella-master/gentelella-master/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+     
+    <script src="/Style/gentelella-master/gentelella-master/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/switchery/dist/switchery.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/build/js/custom.min.js"></script>
+
+    <script src="/Style/ComingSoon/popper.js"></script>
+     
+    <script src="/Style/ComingSoon/select2.min.js"></script>
+<!--===============================================================================================-->
+
+	<script src="/Style/ComingSoon/moment-timezone.min.js"></script>
+	<script src="/Style/ComingSoon/moment-timezone-with-data.min.js"></script>
+	<script src="/Style/ComingSoon/countdowntime.js"></script>
+	
+
+    <script src="/Style/ComingSoon/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="/Style/ComingSoon/main.js"></script>
+
+    <script src="/Style/gentelella-master/gentelella-master/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="/Style/gentelella-master/gentelella-master/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+
+
+  <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+            </asp:ContentPlaceHolder>
+
+    <script>
+        $(document).ready(function () {
+    $(document).click(function (event) {
+        var clickover = $(event.target);
+        var _opened = $(".navbar-collapse").hasClass("navbar-collapse in");
+        if (_opened === true && !clickover.hasClass("navbar-toggle")) {
+            $("button.navbar-toggle").click();
+        }
+    });
+});
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            console.log('clicked - menu toggle');
+
+            if ($BODY.hasClass('nav-md')) {
+                $SIDEBAR_MENU.find('li.active ul').hide();
+                $SIDEBAR_MENU.find('li.active').addClass('active-sm').removeClass('active');
+            } else {
+                $SIDEBAR_MENU.find('li.active-sm ul').show();
+                $SIDEBAR_MENU.find('li.active-sm').addClass('active').removeClass('active-sm');
+            }
+
+            $BODY.toggleClass('nav-md nav-sm');
+
+          
+
+            $('.dataTable').each(function () { $(this).dataTable().fnDraw(); });
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            </asp:ContentPlaceHolder>
+</body>
+</html>
